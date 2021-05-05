@@ -7,6 +7,7 @@ export const authReducer = (state = initState, action) => {
             console.log("do login", action);
             break;
         case 'LOGIN_SUCCESS':
+            console.log("adminLoggedIn: true");
             return { ...state, adminLoggedIn: true }
         case 'LOGIN_FAILED':
             return { ...state, adminLoggedIn: false }

@@ -27,10 +27,10 @@ import { top100data } from './topPosts';
 
 
 const App=()=> {
-  const images= top100data.map(i=>i.media_url)
-  function uniq(a) {
-    return Array.from(new Set(a));
- }
+//   const images= top100data.map(i=>i.media_url)
+//   function uniq(a) {
+//     return Array.from(new Set(a));
+//  }
 // console.log("top 100",uniq(images))
   return (
     <div className='w-100'>

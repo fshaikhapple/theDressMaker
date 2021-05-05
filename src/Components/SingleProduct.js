@@ -8,7 +8,7 @@ import {
     NavLink,
     useLocation
 } from "react-router-dom";
-import { top100data } from "../topPosts";
+
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -17,14 +17,8 @@ function useQuery() {
 export const SingleProduct = (props) => {
     // let query = useQuery();
     const id = props?.match?.params?.id
-    const posts1 = useSelector(state => state)
-    const posts = useSelector(state => state.firestoreReducer?.data?.TDMposts?.aqLE1ykqKcJ4orw4voeW?.mockDataPosts)
-
-    console.log("id", posts1);
-    // const media_url = query.get("url")
-    // console.log("media_url", media_url);
+    const posts = useSelector(state => state.firestoreReducer?.data?.posts?.ljFCVbsegYI1kBYCHDZ5?.mockDataPosts)
     const selectedValue = posts.filter((item) => item.id === id)
-
     console.log("selectedValue", selectedValue);
     return (
         <div>

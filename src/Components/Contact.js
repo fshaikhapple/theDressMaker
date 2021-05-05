@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 
 const Contact = (props) => {
@@ -24,6 +23,18 @@ const Contact = (props) => {
             </div>
         </div>
     )
-} 
+}
+// const mapStateToProps=(state)=>{
+//     console.log("state",state);
+//     return {
+//         state : state
+//     }
+// }   
 
-export default Contact
+// export default compose(
+//     connect(mapStateToProps),
+//     firestoreConnect([
+//         { collection : 'posts'}
+//     ])
+// )(Contact)
+export default Contact;

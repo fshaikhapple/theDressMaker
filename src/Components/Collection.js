@@ -30,8 +30,8 @@ for (const item of top100data) {
 result = result.splice(0, 5); 
 
 export const Collection = (props) => {
-    const posts = useSelector(state => state.firestoreReducer?.data?.TDMposts?.aqLE1ykqKcJ4orw4voeW?.mockDataPosts)
-    console.log("posts",posts);
+    const posts = useSelector(state => state.firestoreReducer?.data?.posts?.ljFCVbsegYI1kBYCHDZ5?.mockDataPosts)
+    // console.log("posts",posts);
     return (
         <div>
             <div class="hero-wrap hero-bread" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>

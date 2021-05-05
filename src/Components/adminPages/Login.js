@@ -2,34 +2,31 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
-import { reactReduxFirebase, getFirebase, firestoreConnect } from 'react-redux-firebase'
 import { mockDataPosts } from "../../mockDataPosts";
 import { compose } from "redux";
+import { useHistory } from 'react-router-dom';
 
 const Login = (props) => {
 	const isLoggedIn = useSelector(state => state.authReducer.adminLoggedIn)
-	const posts = useSelector(state => state.firestoreReducer.data.posts)
+	const posts = useSelector(state => state.firestoreReducer?.data?.posts?.ljFCVbsegYI1kBYCHDZ5?.mockDataPosts)
+	const data = useSelector(state => state.firestoreReducer?.data?.testPosts)
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const dispatch = useDispatch();
-	const firestore = getFirestore()
+	// const firestore = getFirestore()
+	const history = useHistory();
 
 	const handleSubmitForm = () => {
 		dispatch({ type: 'LOGIN', payload: { userName, password } })
-
-		firestore.collection('tdmPosts').add({mockDataPosts}).then((resp)=>{
-			console.log(resp);
-		}).catch((e)=>{
-			console.log(e);
-		})
 	}
-console.log({posts});
+	console.log("data",data);
 	useEffect(() => {
-		if(isLoggedIn){
-			
+		// console.log("isLoggedIn--->",isLoggedIn );
+		if (isLoggedIn) {
+			history.push('/inventory')
 		}
 	}, [isLoggedIn]);
-
+console.log("props1",props);
 	return (
 		<section className="ftco-section ftco-product">
 			<div className="container">
@@ -45,13 +42,13 @@ console.log({posts});
 						<div class="row align-items-end">
 							<div class="col-md-12">
 								<div class="form-group">
-									<label forHtml="userName">User Name</label>
+									<label forhtml="userName">User Name</label>
 									<input type="text" id='userName' class="form-control" placeholder="User Name" onChange={(e) => setUserName(e.target.value)} />
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<label forHtml="password">Password</label>
+									<label forhtml="password">Password</label>
 									<input type="password" id='password' class="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
 								</div>
 							</div>

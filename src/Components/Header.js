@@ -7,8 +7,16 @@ import {
   NavLink,
   Link
 } from "react-router-dom";
+import { connect, useDispatch, useSelector } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
-export const Header = (props) => {
+const Header = (props) => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state?.authReducer?.adminLoggedIn)
+  const logout = () => {
+    dispatch({ type: 'LOGIN_FAILED' })
+    props.history.push('/')
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ftco-navbar-light-2 scrolled awake" id="ftco-navbar">
       <div className="container">
@@ -34,14 +42,23 @@ export const Header = (props) => {
             {/* <li className="nav-item"><a className="nav-link"><NavLink to='/singleProduct'>Product Review </NavLink></a></li> */}
             <li className="nav-item"><Link to="blog.html" className="nav-link">Blog</Link></li>
             <li className="nav-item"><Link to="contact" className="nav-link">Contact</Link></li>
+            <li className="nav-item"><Link to="contact" className="nav-link">Contact</Link></li>
+            {isLoggedIn && <Link to="/inventory" className="nav-link">
+              <span className="icon-shopping_cart">
+              </span>Admin Panel</Link>}
             <li className="nav-item"><Link to="cart" className="nav-link"><span
               className="icon-shopping_cart"></span>[0]</Link></li>
             <li className="nav-item cta cta-colored">
-              <Link to="login" className="nav-link"><span
-                className="icon-shopping_cart"></span>Login</Link></li>
+              {!isLoggedIn && <Link to="login" className="nav-link"><span
+                className="icon-shopping_cart"></span>Login</Link>}
+              {isLoggedIn && <Link to="/" onClick={() => logout()} className="nav-link"><span
+                className="icon-shopping_cart"></span>Logout</Link>}
+            </li>
           </ul>
         </div>
       </div>
     </nav>
   )
 }
+
+export default withRouter(Header)

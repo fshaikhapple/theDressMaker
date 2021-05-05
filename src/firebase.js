@@ -13,7 +13,9 @@ import 'firebase/auth'
   measurementId: "G-X36T9CLQD6"
 };
 
-const rfConfig = {}; // optional redux-firestore Config Options
+const rfConfig = {
+
+}; // optional redux-firestore Config Options
 
 // Initialize firebase instance
 // firebase.initializeApp(firebaseConfig);

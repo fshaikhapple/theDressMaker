@@ -1,8 +1,6 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 
-export function* loginSaga() {
-	yield takeLatest('LOGIN', loginWorkerSaga);
-}
+export const loginSaga = [takeLatest('LOGIN', loginWorkerSaga)]
 
 function* loginWorkerSaga(action) {
 	try {

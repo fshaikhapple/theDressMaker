@@ -13,6 +13,7 @@ import { withRouter } from 'react-router-dom';
 const Header = (props) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state?.authReducer?.adminLoggedIn)
+  const cartProducts = useSelector(state => state?.cartReducer?.products)
   const logout = () => {
     dispatch({ type: 'LOGIN_FAILED' })
     props.history.push('/')
@@ -40,14 +41,18 @@ const Header = (props) => {
             </div> */}
             </li>
             {/* <li className="nav-item"><a className="nav-link"><NavLink to='/singleProduct'>Product Review </NavLink></a></li> */}
-            <li className="nav-item"><Link to="blog.html" className="nav-link">Blog</Link></li>
-            <li className="nav-item"><Link to="contact" className="nav-link">Contact</Link></li>
-            <li className="nav-item"><Link to="contact" className="nav-link">Contact</Link></li>
+            <li className="nav-item"><Link to="/blog" className="nav-link">Blog</Link></li>
+            <li className="nav-item"><Link to="/contact" className="nav-link">Contact</Link></li>
+            <li className="nav-item"><Link to="/aboutUs" className="nav-link">About us</Link></li>
             {isLoggedIn && <Link to="/inventory" className="nav-link">
-              <span className="icon-shopping_cart">
+              <span className="">
               </span>Admin Panel</Link>}
-            <li className="nav-item"><Link to="cart" className="nav-link"><span
-              className="icon-shopping_cart"></span>[0]</Link></li>
+            <li className="nav-item ">
+              <Link to="/cart" className=" nav-link">
+                <span className="icon-shopping_cart">{!!cartProducts.length&&cartProducts.length}</span>
+                {cartProducts.length&&<span className='notify'></span>}
+              </Link>
+            </li>
             <li className="nav-item cta cta-colored">
               {!isLoggedIn && <Link to="login" className="nav-link"><span
                 className="icon-shopping_cart"></span>Login</Link>}

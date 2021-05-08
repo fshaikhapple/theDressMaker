@@ -104,7 +104,7 @@ h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0.70rem;
 }
 
 abbr[title],
@@ -419,7 +419,7 @@ h4,
 
 h5,
 .h5 {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 h6,
@@ -1937,7 +1937,7 @@ pre code {
 .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #dee2e6;
+  /* border-top: 1px solid #dee2e6; */
 }
 
 .table thead th {
@@ -10418,7 +10418,7 @@ a.text-dark:focus {
 body {
   font-family: "Lato", Arial, sans-serif;
   background: #fff;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.8;
   font-weight: 400;
   color: gray;
@@ -10804,6 +10804,7 @@ h5,
     text-transform: uppercase;
   }
 }
+
 @media (max-width : 420px) {
   .hero-wrap .slider-text h1 {
     font-family: "Roboto Condensed", Arial, sans-serif;
@@ -10892,6 +10893,7 @@ h5,
 .hero-wrap.hero-bread {
   padding: 7em 0;
 }
+
 .hero-wrap.hero-bread-small {
   padding: 5em 0em;
   padding-bottom: 1em;
@@ -11174,6 +11176,19 @@ h5,
   border-radius: 50%;
 }
 
+
+.notify {
+  width: 10px;
+  height: 10px;
+  background: #f1b8c4;
+  -webkit-animation: 1s pulse 1s infinite;
+  animation: pulse 1s infinite;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
 .img-2 .icon span {
   color: #fff;
   font-size: 24px;
@@ -11310,6 +11325,22 @@ h5,
 .product .text p.price span.price-dc {
   text-decoration: line-through;
   color: #b3b3b3;
+}
+
+span.price-dc {
+  text-decoration: line-through;
+}
+
+.color-pink {
+  color: #f16565;
+}
+
+.color-red {
+  color: red;
+}
+
+.color-black {
+  color: black;
 }
 
 .product .text p.price span.price-sale {
@@ -11513,9 +11544,9 @@ h5,
 }
 
 .table {
-  min-width: 1000px !important;
+  /* min-width: 1000px !important; */
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .table th {
@@ -11533,11 +11564,11 @@ h5,
 }
 
 .table tbody tr td {
-  text-align: center !important;
-  vertical-align: middle;
+  /* text-align: center !important; */
+  /* vertical-align: middle; */
   /* padding: 10px 10px; */
-  border: 1px solid transparent !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  /* border: 1px solid transparent !important; */
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important; */
 }
 
 .table tbody tr td.product-remove a {
@@ -11563,7 +11594,7 @@ h5,
   display: block;
   width: 100px;
   /* height: 150px; */
-  margin: 0 auto;
+  margin: 0 0;
 }
 
 .table tbody tr td.product-name {
@@ -12309,6 +12340,10 @@ textarea.form-control {
   color: #f1b8c4;
 }
 
+.font-bold {
+  font-weight: bold
+}
+
 .ftco-counter .ftco-label {
   font-size: 12px;
   text-transform: uppercase;
@@ -12375,12 +12410,16 @@ textarea.form-control {
   display: inline-block;
   margin-right: 5px;
   margin-bottom: 5px;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .blog-entry .meta>div a {
   color: #b3b3b3;
-  font-size: 15px;
+  font-size: 13px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .blog-entry .meta>div a:hover {
@@ -12574,7 +12613,7 @@ textarea.form-control {
   outline: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .block-21 .blog-img {
@@ -12875,7 +12914,7 @@ textarea.form-control {
 .sidebar-box {
   margin-bottom: 30px;
   padding: 25px;
-  font-size: 15px;
+  font-size: 13px;
   width: 100%;
   float: left;
   background: #fff;

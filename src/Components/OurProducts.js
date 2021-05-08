@@ -1,7 +1,11 @@
 
 import React from "react";
-
+import product1 from '../images/images-product-1.jpg'
+import product2 from '../images/images-product-2.jpg'
+import product3 from '../images/images-product-3.jpg'
+import product4 from '../images/images-product-4.jpg'
 export const OurProducts = (props) => {
+
     return (
         <section className="ftco-section bg-light">
             <div className="container">
@@ -16,7 +20,7 @@ export const OurProducts = (props) => {
                 <div className="row">
                     <div className="col-sm col-md-6 col-lg ">
                         <div className="product">
-                            <a href="#" className="img-prod"><img className="img-fluid" src="/images/images-product-1.jpg" alt="Colorlib Template" /></a>
+                            <a href="#" className="img-prod"><img className="img-fluid" src={product1} alt="Colorlib Template" /></a>
                             <div className="text py-3 px-3">
                                 <h3><a href="#">Young Woman Wearing Dress</a></h3>
                                 <div className="d-flex">
@@ -43,7 +47,7 @@ export const OurProducts = (props) => {
                     </div>
                     <div className="col-sm col-md-6 col-lg ">
                         <div className="product">
-                            <a href="#" className="img-prod"><img className="img-fluid" src="images/images-product-2.jpg" alt="Colorlib Template" /></a>
+                            <a href="#" className="img-prod"><img className="img-fluid" src={product2} alt="Colorlib Template" /></a>
                             <div className="text py-3 px-3">
                                 <h3><a href="#">Young Woman Wearing Dress</a></h3>
                                 <div className="d-flex">
@@ -70,7 +74,7 @@ export const OurProducts = (props) => {
                     </div>
                     <div className="col-sm col-md-6 col-lg ">
                         <div className="product">
-                            <a href="#" className="img-prod"><img className="img-fluid" src="images/images-product-3.jpg" alt="Colorlib Template" /></a>
+                            <a href="#" className="img-prod"><img className="img-fluid" src={product3} alt="Colorlib Template" /></a>
                             <div className="text py-3 px-3">
                                 <h3><a href="#">Young Woman Wearing Dress</a></h3>
                                 <div className="d-flex">
@@ -97,7 +101,7 @@ export const OurProducts = (props) => {
                     </div>
                     <div className="col-sm col-md-6 col-lg ">
                         <div className="product">
-                            <a href="#" className="img-prod"><img className="img-fluid" src="images/images-product-4.jpg"
+                            <a href="#" className="img-prod"><img className="img-fluid" src={product4}
                                 alt="Colorlib Template" /></a>
                             <div className="text py-3 px-3">
                                 <h3><a href="#">Young Woman Wearing Dress</a></h3>

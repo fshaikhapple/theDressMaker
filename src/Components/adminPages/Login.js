@@ -26,7 +26,7 @@ const Login = (props) => {
 			history.push('/inventory')
 		}
 	}, [isLoggedIn]);
-console.log("props1",props);
+
 	return (
 		<section className="ftco-section ftco-product">
 			<div className="container">

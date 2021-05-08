@@ -11,6 +11,8 @@ export const authReducer = (state = initState, action) => {
             return { ...state, adminLoggedIn: true }
         case 'LOGIN_FAILED':
             return { ...state, adminLoggedIn: false }
+        default:
+            return state
     }
     return state;
 }

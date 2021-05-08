@@ -45,7 +45,6 @@ const App=()=> {
         <Blog />
         <Services />
         <Subscribe />
-        <Footer />
       </div>
     </div>
   );

@@ -27,23 +27,22 @@ for (const item of top100data) {
     }
 }
 // console.log(result)
-result = result.splice(0, 5); 
+result = result.splice(0, 5);
 
 export const Collection = (props) => {
     const posts = useSelector(state => state.firestoreReducer?.data?.posts?.ljFCVbsegYI1kBYCHDZ5?.mockDataPosts)
     // console.log("posts",posts);
     return (
         <div>
-            <div class="hero-wrap hero-bread" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>
-                <div class="container">
-                    <div class="row no-gutters slider-text align-items-center justify-content-center">
-                        <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
-                            <h1 class="mb-0 bread">Collection</h1>
-                            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Product</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          		<div class="hero-wrap hero-bread pb-5" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>
+				<div class="container p-4">
+					<div class="row no-gutters slider-text align-items-center justify-content-center">
+						<div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+							<h1 class="mb-0 bread">Collection</h1>
+						</div>
+					</div>
+				</div>
+			</div>
             <div class="col-lg-4 sidebar ftco-animate fadeInUp ftco-animated">
                 <div class="sidebar-box">
                     <form action="#" class="search-form">
@@ -64,7 +63,7 @@ export const Collection = (props) => {
                         <li><a href="#">Beauty <span>(140)</span></a></li>
                     </div>
                 </div>
-                <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+                {/* <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <h3>Recent Blog</h3>
                     <div class="block-21 mb-4 d-flex">
                         <a class="blog-img mr-4"
@@ -105,7 +104,7 @@ export const Collection = (props) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <h3>Tag Cloud</h3>
                     <div class="tagcloud">
@@ -127,14 +126,14 @@ export const Collection = (props) => {
 
             <div class="container-fluid">
                 <div class="row">
-                    {posts&&posts.map((item,i) => {
+                    {posts && posts.map((item, i) => {
                         return <div class="col-sm col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
                             <div class="product">
                                 <a href="#" class="img-prod">
                                     <span class="status">New Arrival</span>
                                 </a>
                                 <div class="text py-3 px-3">
-                                <Link to={`/Singleproduct/${item.id}`}>
+                                    <Link to={`/Singleproduct/${item.id}`}>
                                         <a className="img-prod">
                                             <img className="img-fluid" src={item.media_url} alt="Colorlib Template" />
                                         </a>
@@ -146,18 +145,22 @@ export const Collection = (props) => {
                                         </div>
                                         <div class="rating">
                                             <p class="text-right">
-                                                <span class="ion-ios-star-outline"></span>
-                                                <span class="ion-ios-star-outline"></span>
-                                                <span class="ion-ios-star-outline"></span>
-                                                <span class="ion-ios-star-outline"></span>
+                                                <span class="ion-ios-star"></span>
+                                                <span class="ion-ios-star"></span>
+                                                <span class="ion-ios-star"></span>
+                                                <span class="ion-ios-star-half"></span>
                                                 <span class="ion-ios-star-outline"></span>
                                             </p>
                                         </div>
                                     </div>
                                     <hr />
-                                    <p class="bottom-area d-flex">
-                                        <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                                        <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+                                    <p class="bottom-area d-flex justify-content-center">
+                                        <a href="#" class="add-to-cart">
+                                            <span> WishList <i class="ion-ios-heart-empty ml-1"></i></span>
+                                        </a>
+                                        {/* <a href="#" class="ml-auto">
+                                            <span><i class="ion-ios-heart-empty"></i></span>
+                                        </a> */}
                                     </p>
                                 </div>
                             </div>

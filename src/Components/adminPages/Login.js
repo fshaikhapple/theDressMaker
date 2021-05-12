@@ -5,6 +5,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { mockDataPosts } from "../../mockDataPosts";
 import { compose } from "redux";
 import { useHistory } from 'react-router-dom';
+import firebase from "firebase/app";
 
 const Login = (props) => {
 	const isLoggedIn = useSelector(state => state.authReducer.adminLoggedIn)
@@ -17,10 +18,22 @@ const Login = (props) => {
 	const history = useHistory();
 
 	const handleSubmitForm = () => {
-		dispatch({ type: 'LOGIN', payload: { userName, password } })
+		const newPost = {
+			name : "asda",
+			orderId: '12342'
+		}
+		const firestorePost =  firebase.firestore().collection("posts").add(newPost).catch(err => {
+            console.log(err);
+        });
+		firestorePost();
+		// dispatch({ type: 'LOGIN', payload: { userName, password } })
 	}
-	console.log("data",data);
+
+
 	useEffect(() => {
+
+
+
 		// console.log("isLoggedIn--->",isLoggedIn );
 		if (isLoggedIn) {
 			history.push('/inventory')

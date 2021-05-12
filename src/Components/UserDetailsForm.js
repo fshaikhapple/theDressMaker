@@ -21,7 +21,6 @@ const UserDetailsForm = (props) => {
         dispatch({ type: 'ORDER_MAKE_REQUEST_TO_FIREBASE' ,elements})
         // firebase.add()
     }
-
     return (
         <>
             <div class="hero-wrap hero-bread pb-5" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>

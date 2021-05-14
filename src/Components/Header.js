@@ -7,16 +7,18 @@ import {
   NavLink,
   Link
 } from "react-router-dom";
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 //  import { useDispatch } from 'react-redux'
 const Header = (props) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+	const isLoggedIn =  useSelector(state => state.authReducer.adminLoggedIn)
+
   // const data = useSelector(state => state)
   // console.log("data",data);
-  // const [] = useSelector(state => state?.cartReducer?.products)
+  // const products = useSelector(state => state?.cartReducer?.products)
   const logout = () => {
-    // dispatch({ type: 'LOGIN_FAILED' })
+    dispatch({ type: 'LOGIN_FAILED' })
     props.history.push('/')
   }
   return (
@@ -45,7 +47,7 @@ const Header = (props) => {
             <li className="nav-item"><Link to="/blog" className="nav-link">Blog</Link></li>
             <li className="nav-item"><Link to="/contact" className="nav-link">Contact</Link></li>
             <li className="nav-item"><Link to="/aboutUs" className="nav-link">About us</Link></li>
-            {true && <Link to="/inventory" className="nav-link">
+            {isLoggedIn && <Link to="/inventory" className="nav-link">
               <span className="">
               </span>Admin Panel</Link>}
             <li className="nav-item ">
@@ -55,9 +57,9 @@ const Header = (props) => {
               </Link>
             </li>
             <li className="nav-item cta cta-colored">
-              {!true && <Link to="login" className="nav-link"><span
+              {!isLoggedIn && <Link to="login" className="nav-link"><span
                 className="icon-shopping_cart"></span>Login</Link>}
-              {true && <Link to="/" onClick={() => logout()} className="nav-link"><span
+              {isLoggedIn && <Link to="/" onClick={() => logout()} className="nav-link"><span
                 className="icon-shopping_cart"></span>Logout</Link>}
             </li>
           </ul>

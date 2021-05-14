@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { connect, useSelector } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { mockDataPosts } from "../../mockDataPosts";
 import { compose } from "redux";
@@ -9,31 +9,29 @@ import firebase from "firebase/app";
 
 const Login = (props) => {
 	const posts = useSelector(state => state.firestore)
-	const isLoggedIn = false
-	// const posts = []
+	const isLoggedIn =  useSelector(state => state.authReducer.adminLoggedIn)
 	const data = []
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
-	// const dispatch = useDispatch();
-	// const firestore = getFirestore()
+	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const handleSubmitForm = () => {
-		const firestore = getFirestore();
-		console.log("firestore", firestore);
-		firestore.collection('notifications').add({
-			authorFirstName: 'Net',
-			authorLastName: 'Ninja',
-			authorId: 12345,
-		}).then(() => {
-			console.log("done");
-		})
-
-		// dispatch({ type: 'LOGIN', payload: { userName, password } })
+		// const firestore = getFirestore();
+		// console.log("firestore", firestore);
+		// firestore.collection('notifications').add({
+		// 	authorFirstName: 'Net',
+		// 	authorLastName: 'Ninja',
+		// 	authorId: 12345,
+		// }).then(() => {
+		// 	console.log("done");
+		// })
+		dispatch({ type: 'LOGIN', payload: { userName, password } })
 	}
 
 
 	useEffect(() => {
+		console.log("isLoggedIn",isLoggedIn);
 		if (isLoggedIn) {
 			history.push('/inventory')
 		}
@@ -76,28 +74,4 @@ const Login = (props) => {
 	)
 }
 
-// const mapStateToprops=state=>{
-// 	return {
-// 		posts:state
-// 	}
-// }
-// export default compose(
-// 	connect(mapStateToprops),
-// 	firestoreConnect([{
-// 		collection:'posts'
-// 	}])
-// )(Login)
 export default Login
-// export const mapDispatchToProps = dispatch => {
-// 	return {
-// 		doLogin: () => {
-// 			dispatch(doLogin());
-// 	  },
-// 	};
-//   };
-// const withConnect = connect(
-// 	null,
-// 	mapDispatchToProps
-//   );
-
-// export default compose(withConnect)(Login);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 import {
     BrowserRouter as Router,
@@ -20,8 +21,8 @@ export const SingleProduct = (props) => {
     const [selectedSize, setSelectedSize] = useState('Medium');
     // const dispatch = useDispatch();
     const id = props?.match?.params?.id
-    // const posts = useSelector(state => state.firestoreReducer?.data?.posts?.ljFCVbsegYI1kBYCHDZ5?.mockDataPosts)
-    const posts = []
+    const posts = useSelector(state => state?.firestore?.data?.tdmPosts?.BP9iL5ZG56sVpkiXcg0y?.mockDataPosts) || []
+
     const selectedValue = posts.filter((item) => item.id === id)
 
     const updateSelectedValue = (counter) => {

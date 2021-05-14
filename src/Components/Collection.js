@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { top100data } from "../topPosts";
 import { useFirebaseConnect } from 'react-redux-firebase'
+import { useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 // const images = top100data.map(i => i.media_url)
 // function uniq(a) {
@@ -35,16 +36,7 @@ result = result.splice(0, 5);
 export const Collection = (props) => {
     // console.log("useSelector",useSelector());
     // const statt = useSelector(state => state)
-
-    // useFirebaseConnect([
-    //     { path: `tdmPosts/` } // create todo listener
-    //     // `todos/${props.params.todoId}` // equivalent string notation
-    //   ])
-
-    // console.log("statt", statt.firebaseReducer.data);
-
-    const posts = []
-    // console.log("posts",posts);
+    const posts = useSelector(state => state?.firestore?.data?.tdmPosts?.BP9iL5ZG56sVpkiXcg0y?.mockDataPosts) || []
     return (
         <div>
             <div className="hero-wrap hero-bread pb-5" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>

@@ -23,14 +23,14 @@ const Orders = (props) => {
     result = result.splice(0, 5);
 
     return (
-        <div class="container-fluid">
+        <div className="container-fluid">
             <AdminTabs />
-            <div class="row">
-                <div class="col-md-12 p-0 ftco-animate fadeInUp ftco-animated">
-                    <div class="cart-list">
-                        <table class="table">
-                            <thead class="thead-primary">
-                                <tr class="text-center">
+            <div className="row">
+                <div className="col-md-12 p-0 ftco-animate fadeInUp ftco-animated">
+                    <div className="cart-list">
+                        <table className="table">
+                            <thead className="thead-primary">
+                                <tr className="text-center">
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                     <th>Product</th>
@@ -42,24 +42,24 @@ const Orders = (props) => {
                             <tbody>
                                 {result.map((item, i) => {
                                     return (
-                                        <tr class="text-center">
-                                            <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-                                            <td class="image-prod">
-                                                <div class="img">
+                                        <tr className="text-center">
+                                            <td className="product-remove"><a href="#"><span className="ion-ios-close"></span></a></td>
+                                            <td className="image-prod">
+                                                <div className="img">
                                                     <img className="img-fluid" src={item.media_url} alt="Colorlib Template" />
                                                 </div>
                                             </td>
-                                            <td class="product-name">
+                                            <td className="product-name">
                                                 <h3>Young Woman Wearing Dress</h3>
                                                 <p>Far far away, behind the word mountains, far from the countries</p>
                                             </td>
-                                            <td class="price">$4.90</td>
-                                            <td class="quantity">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100" />
+                                            <td className="price">$4.90</td>
+                                            <td className="quantity">
+                                                <div className="input-group mb-3">
+                                                    <input type="text" name="quantity" className="quantity form-control input-number" value="1" min="1" max="100" />
                                                 </div>
                                             </td>
-                                            <td class="total">$4.90</td>
+                                            <td className="total">$4.90</td>
                                         </tr>
                                     )
                                 })}
@@ -68,29 +68,29 @@ const Orders = (props) => {
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end">
-                <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate fadeInUp ftco-animated">
-                    <div class="cart-total mb-3">
+            <div className="row justify-content-end">
+                <div className="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate fadeInUp ftco-animated">
+                    <div className="cart-total mb-3">
                         <h3>Cart Totals</h3>
-                        <p class="d-flex">
+                        <p className="d-flex">
                             <span>Subtotal</span>
                             <span>$20.60</span>
                         </p>
-                        <p class="d-flex">
+                        <p className="d-flex">
                             <span>Delivery</span>
                             <span>$0.00</span>
                         </p>
-                        <p class="d-flex">
+                        <p className="d-flex">
                             <span>Discount</span>
                             <span>$3.00</span>
                         </p>
                         <hr />
-                        <p class="d-flex total-price">
+                        <p className="d-flex total-price">
                             <span>Total</span>
                             <span>$17.60</span>
                         </p>
                     </div>
-                    <p class="text-center"><a href="verifyPhoneNumber" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                    <p className="text-center"><a href="verifyPhoneNumber" className="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
                 </div>
             </div>
         </div>

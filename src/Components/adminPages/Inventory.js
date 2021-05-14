@@ -22,7 +22,7 @@ const Inventory = (props) => {
 	}
 	result = result.splice(0, 5);
 	return (
-		<div class="container-fluid">
+		<div className="container-fluid">
 			<AdminTabs />
 			<div className="container-fluid">
 				<div className="row">

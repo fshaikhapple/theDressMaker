@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useSelector } from "react-redux";
+// import {  } from "react-redux";
+// import  * as us  from 'react-redux'
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,6 +10,8 @@ import {
     Link
 } from "react-router-dom";
 import { top100data } from "../topPosts";
+import { useFirebaseConnect } from 'react-redux-firebase'
+// import { useSelector } from "react-redux";
 // const images = top100data.map(i => i.media_url)
 // function uniq(a) {
 //     return Array.from(new Set(a));
@@ -30,30 +33,40 @@ for (const item of top100data) {
 result = result.splice(0, 5);
 
 export const Collection = (props) => {
-    const posts = useSelector(state => state.firestoreReducer?.data?.posts?.ljFCVbsegYI1kBYCHDZ5?.mockDataPosts)
+    // console.log("useSelector",useSelector());
+    // const statt = useSelector(state => state)
+
+    // useFirebaseConnect([
+    //     { path: `tdmPosts/` } // create todo listener
+    //     // `todos/${props.params.todoId}` // equivalent string notation
+    //   ])
+
+    // console.log("statt", statt.firebaseReducer.data);
+
+    const posts = []
     // console.log("posts",posts);
     return (
         <div>
-          		<div class="hero-wrap hero-bread pb-5" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>
-				<div class="container p-4">
-					<div class="row no-gutters slider-text align-items-center justify-content-center">
-						<div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
-							<h1 class="mb-0 bread">Collection</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-            <div class="col-lg-4 sidebar ftco-animate fadeInUp ftco-animated">
-                <div class="sidebar-box">
-                    <form action="#" class="search-form">
-                        <div class="form-group">
-                            <span class="icon fa fa-search"></span>
-                            <input type="text" class="form-control" placeholder="Type a keyword and hit enter" />
+            <div className="hero-wrap hero-bread pb-5" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>
+                <div className="container p-4">
+                    <div className="row no-gutters slider-text align-items-center justify-content-center">
+                        <div className="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+                            <h1 className="mb-0 bread">Collection</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="col-lg-4 sidebar ftco-animate fadeInUp ftco-animated">
+                <div className="sidebar-box">
+                    <form action="#" className="search-form">
+                        <div className="form-group">
+                            <span className="icon fa fa-search"></span>
+                            <input type="text" className="form-control" placeholder="Type a keyword and hit enter" />
                         </div>
                     </form>
                 </div>
-                <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
-                    <div class="categories">
+                <div className="sidebar-box ftco-animate fadeInUp ftco-animated">
+                    <div className="categories">
                         <h3>Categories</h3>
                         <li><a href="#">Bags <span>(12)</span></a></li>
                         <li><a href="#">Shoes <span>(22)</span></a></li>
@@ -63,103 +76,103 @@ export const Collection = (props) => {
                         <li><a href="#">Beauty <span>(140)</span></a></li>
                     </div>
                 </div>
-                {/* <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+                {/* <div className="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <h3>Recent Blog</h3>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4"
+                    <div className="block-21 mb-4 d-flex">
+                        <a className="blog-img mr-4"
                         //  style="background-image: url(images/image_1.jpg);"
                         ></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                        <div className="text">
+                            <h3 className="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                            <div className="meta">
+                                <div><a href="#"><span className="icon-calendar"></span> July 12, 2018</a></div>
+                                <div><a href="#"><span className="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span className="icon-chat"></span> 19</a></div>
                             </div>
                         </div>
                     </div>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4"
+                    <div className="block-21 mb-4 d-flex">
+                        <a className="blog-img mr-4"
                         // style="background-image: url(images/image_2.jpg);"
                         ></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                        <div className="text">
+                            <h3 className="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                            <div className="meta">
+                                <div><a href="#"><span className="icon-calendar"></span> July 12, 2018</a></div>
+                                <div><a href="#"><span className="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span className="icon-chat"></span> 19</a></div>
                             </div>
                         </div>
                     </div>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4"
+                    <div className="block-21 mb-4 d-flex">
+                        <a className="blog-img mr-4"
                         // style="background-image: url(images/image_3.jpg);"
                         ></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                        <div className="text">
+                            <h3 className="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                            <div className="meta">
+                                <div><a href="#"><span className="icon-calendar"></span> July 12, 2018</a></div>
+                                <div><a href="#"><span className="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span className="icon-chat"></span> 19</a></div>
                             </div>
                         </div>
                     </div>
                 </div> */}
-                <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+                <div className="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <h3>Tag Cloud</h3>
-                    <div class="tagcloud">
-                        <a href="#" class="tag-cloud-link">dish</a>
-                        <a href="#" class="tag-cloud-link">menu</a>
-                        <a href="#" class="tag-cloud-link">food</a>
-                        <a href="#" class="tag-cloud-link">sweet</a>
-                        <a href="#" class="tag-cloud-link">tasty</a>
-                        <a href="#" class="tag-cloud-link">delicious</a>
-                        <a href="#" class="tag-cloud-link">desserts</a>
-                        <a href="#" class="tag-cloud-link">drinks</a>
+                    <div className="tagcloud">
+                        <a href="#" className="tag-cloud-link">dish</a>
+                        <a href="#" className="tag-cloud-link">menu</a>
+                        <a href="#" className="tag-cloud-link">food</a>
+                        <a href="#" className="tag-cloud-link">sweet</a>
+                        <a href="#" className="tag-cloud-link">tasty</a>
+                        <a href="#" className="tag-cloud-link">delicious</a>
+                        <a href="#" className="tag-cloud-link">desserts</a>
+                        <a href="#" className="tag-cloud-link">drinks</a>
                     </div>
                 </div>
-                <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+                <div className="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <h3>Paragraph</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
                 </div>
             </div>
 
-            <div class="container-fluid">
-                <div class="row">
+            <div className="container-fluid">
+                <div className="row">
                     {posts && posts.map((item, i) => {
-                        return <div class="col-sm col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
-                            <div class="product">
-                                <a href="#" class="img-prod">
-                                    <span class="status">New Arrival</span>
+                        return <div className="col-sm col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
+                            <div className="product">
+                                <a href="#" className="img-prod">
+                                    <span className="status">New Arrival</span>
                                 </a>
-                                <div class="text py-3 px-3">
+                                <div className="text py-3 px-3">
                                     <Link to={`/Singleproduct/${item.id}`}>
                                         <a className="img-prod">
                                             <img className="img-fluid" src={item.media_url} alt="Colorlib Template" />
                                         </a>
                                     </Link>
                                     <h3><a href="#">Young Woman Wearing Dress</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price"><span>$120.00</span></p>
+                                    <div className="d-flex">
+                                        <div className="pricing">
+                                            <p className="price"><span>$120.00</span></p>
                                         </div>
-                                        <div class="rating">
-                                            <p class="text-right">
-                                                <span class="ion-ios-star"></span>
-                                                <span class="ion-ios-star"></span>
-                                                <span class="ion-ios-star"></span>
-                                                <span class="ion-ios-star-half"></span>
-                                                <span class="ion-ios-star-outline"></span>
+                                        <div className="rating">
+                                            <p className="text-right">
+                                                <span className="ion-ios-star"></span>
+                                                <span className="ion-ios-star"></span>
+                                                <span className="ion-ios-star"></span>
+                                                <span className="ion-ios-star-half"></span>
+                                                <span className="ion-ios-star-outline"></span>
                                             </p>
                                         </div>
                                     </div>
                                     <hr />
-                                    <p class="bottom-area d-flex justify-content-center">
-                                        <a href="#" class="add-to-cart">
-                                            <span> WishList <i class="ion-ios-heart-empty ml-1"></i></span>
+                                    <p className="bottom-area d-flex justify-content-center">
+                                        <a href="#" className="add-to-cart">
+                                            <span> WishList <i className="ion-ios-heart-empty ml-1"></i></span>
                                         </a>
-                                        {/* <a href="#" class="ml-auto">
-                                            <span><i class="ion-ios-heart-empty"></i></span>
+                                        {/* <a href="#" className="ml-auto">
+                                            <span><i className="ion-ios-heart-empty"></i></span>
                                         </a> */}
                                     </p>
                                 </div>
@@ -167,12 +180,12 @@ export const Collection = (props) => {
                         </div>
                     })}
                 </div>
-                <div class="row mt-5">
-                    <div class="col text-center">
-                        <div class="block-27">
+                <div className="row mt-5">
+                    <div className="col text-center">
+                        <div className="block-27">
                             <ul>
                                 <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
+                                <li className="active"><span>1</span></li>
                                 <li><a href="#">2</a></li>
                                 <li><a href="#">3</a></li>
                                 <li><a href="#">4</a></li>
@@ -186,3 +199,5 @@ export const Collection = (props) => {
         </div>
     )
 }
+
+

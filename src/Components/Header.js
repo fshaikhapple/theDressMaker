@@ -16,7 +16,7 @@ const Header = (props) => {
 
   // const data = useSelector(state => state)
   // console.log("data",data);
-  // const products = useSelector(state => state?.cartReducer?.products)
+  const products = useSelector(state => state?.cartReducer?.products)
   const logout = () => {
     dispatch({ type: 'LOGIN_FAILED' })
     props.history.push('/')
@@ -52,8 +52,8 @@ const Header = (props) => {
               </span>Admin Panel</Link>}
             <li className="nav-item ">
               <Link to="/cart" className=" nav-link">
-                <span className="icon-shopping_cart">{!![].length&&[].length}</span>
-                {[].length&&<span className='notify'></span>}
+                <span className="icon-shopping_cart">{!!products.length&&products.length}</span>
+                {products.length&&<span className='notify'></span>}
               </Link>
             </li>
             <li className="nav-item cta cta-colored">

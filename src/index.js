@@ -42,32 +42,28 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux';
-import { reactReduxFirebase } from 'react-redux-firebase';
 import { reduxFirestore, getFirestore, createFirestoreInstance } from 'redux-firestore';
 import { getFirebase, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
-
 import fbConfig from './config/fbConfig';
-import {
-  FirebaseDatabaseProvider,
-  FirebaseDatabaseNode
-} from "@react-firebase/database";
 import 'firebase/database';
-import { FirestoreDocument } from '@react-firebase/firestore';
 import firebase from './config/fbConfig';
 import rootReducer from './redux/reducer/rootReducer';
 import { rootSaga } from './saga/rootsaga';
+import persistState from 'redux-localstorage'
 
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(rootReducer,
   compose(
     applyMiddleware(sagaMiddleware,thunk.withExtraArgument({ getFirebase, getFirestore })),
+    persistState(),
     // reactReduxFirebase(fbConfig, {userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true}),
     reduxFirestore(fbConfig) // redux bindings for firestore
   )
 );
+
 
 const rrfConfig = {}
 

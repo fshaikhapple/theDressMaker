@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 import {
     BrowserRouter as Router,
@@ -19,7 +19,7 @@ function useQuery() {
 export const SingleProduct = (props) => {
     const [updateQuantity, setUpdateQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('Medium');
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const id = props?.match?.params?.id
     const posts = useSelector(state => state?.firestore?.data?.tdmPosts?.BP9iL5ZG56sVpkiXcg0y?.mockDataPosts) || []
 
@@ -42,8 +42,8 @@ export const SingleProduct = (props) => {
             permalink: selectedValue[0].permalink,
             price: selectedValue[0]?.price || 120+(Math.ceil(Math.random() * 100)),
         }
-        // dispatch({ type: 'CART_ADD_PRODUCT', product })
-        // props.history.push('/cart');
+        dispatch({ type: 'CART_ADD_PRODUCT', product })
+        props.history.push('/cart');
     }
     return (
         <div>

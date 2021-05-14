@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { compose } from "redux";
 import { top100data } from "../topPosts";
 
 const Cart = (props) => {
-	const cartProducts = []
-	// const posts = useSelector(state => state.firestoreReducer?.data?.posts?.ljFCVbsegYI1kBYCHDZ5?.mockDataPosts)
-	// const dispatch = useDispatch();
+	const cartProducts =  useSelector(state => state?.cartReducer?.products) || []
+	const dispatch = useDispatch();
 	// const productsIdArray = cartProducts.map(i=>i.)//! todo real time prices of procuct 
 	let totalCartPrice = 0;
-	[].map(i => {
+	cartProducts.map(i => {
 		totalCartPrice += i.price;
 	})
 	return (
@@ -97,7 +96,7 @@ const Cart = (props) => {
 												</td>
 												<hr />
 												<div className='d-flex text-bottom '>
-													{/* <p onClick={() => dispatch({ type: 'CART_REMOVE_PRODUCT' ,item})} className='cursor-pointer w-25 color-red text-center'>Remove</p> */}
+													<p onClick={() => dispatch({ type: 'CART_REMOVE_PRODUCT' ,item})} className='cursor-pointer w-25 color-red text-center'>Remove</p>
 													<p className='border-left text-center'>Add to wishlist</p>
 												</div>
 											</tr>
@@ -132,7 +131,7 @@ const Cart = (props) => {
 							<Link to="/verifyPhoneNumber" className="btn btn-primary py-3 px-4">Proceed to Checkout</Link></p>
 					</div>
 				</div>
-				{/* <p>	<div onClick={() => dispatch({ type: 'CART_EMPTY_PRODUCT' })} to="/verifyPhoneNumber" className="btn btn-primary py-3 px-4">Empty Cart</div></p> */}
+				<p>	<div onClick={() => dispatch({ type: 'CART_EMPTY_PRODUCT' })} to="/verifyPhoneNumber" className="btn btn-primary py-3 px-4">Empty Cart</div></p>
 				<div className="row justify-content-end">
 				</div>
 			</div>

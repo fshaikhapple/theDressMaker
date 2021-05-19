@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { compose } from "redux";
 import { top100data } from "../../topPosts";
 import AdminTabs from "./AdminTabs";
@@ -8,25 +8,26 @@ const Inventory = (props) => {
 	const tabs = ["Inventory", "Orders", "Notifications", "Sales"];
 	const [selectedItemid, setSelectedItem] = useState(0);
 	const [selectedTab, setSelectedTab] = useState(0);
+    const posts = useSelector(state => state?.firestore?.data?.tdmPosts?.BP9iL5ZG56sVpkiXcg0y?.mockDataPosts) || []
 
-	let result = [];
-	const map = new Map();
-	for (const item of top100data) {
-		if (!map.has(item.id)) {
-			map.set(item.id, true);    // set any value to Map
-			result.push({
-				id: item.id,
-				media_url: item.media_url
-			});
-		}
-	}
-	result = result.splice(0, 5);
+	// let result = [];
+	// const map = new Map();
+	// for (const item of top100data) {
+	// 	if (!map.has(item.id)) {
+	// 		map.set(item.id, true);    // set any value to Map
+	// 		result.push({
+	// 			id: item.id,
+	// 			media_url: item.media_url
+	// 		});
+	// 	}
+	// }
+	// result = result.splice(0, 5);
 	return (
 		<div className="container-fluid">
 			<AdminTabs />
 			<div className="container-fluid">
 				<div className="row">
-					{result.map((item, i) => {
+					{posts.map((item, i) => {
 						return <div className="col-sm-2 col-md-2 col-sm-2 col-lg-2 ftco-animate fadeInUp ftco-animated">
 							<div className='product' onClick={() => setSelectedItem(item.id)}>
 								<div className="text py-3 px-3">

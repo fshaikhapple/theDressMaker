@@ -97,10 +97,10 @@ import UserDetailsForm from './Components/UserDetailsForm';
 import PrivateRoute from './PrivateRoute';
 import AboutUs from './Components/AboutUs';
 import { Route, Router, Switch,BrowserRouter } from 'react-router-dom';
+import OrderPlaced from './Components/OrderPlaced';
 
 class App extends Component {
   render() {
-    console.log("notifications", this.props);
     return (
       <BrowserRouter>
         <Header />
@@ -118,6 +118,7 @@ class App extends Component {
           <Route exact path='/verifyPhoneNumber' component={VerifyPhoneNumber} />
           <Route exact path='/otpVerification' component={OtpVerification} />
           <Route exact path='/userDetailsForm' component={UserDetailsForm} />
+          <Route exact path='/orderPlaced' component={OrderPlaced} />
         </Switch>
         <Footer />
       </BrowserRouter>
@@ -126,7 +127,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     notifications: state
   }
@@ -136,5 +136,7 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([
     { collection: 'tdmPosts' },
+    { collection: 'notifications' },
+    { collection: 'tdmOrders' },
   ])
 )(App)

@@ -1,9 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { compose } from "redux";
+import { reduxFirestore, getFirestore } from 'redux-firestore'
+import moment from "moment";
 
 const UserDetailsForm = (props) => {
-	// const dispatch = useDispatch();
+    const cartProducts =  useSelector(state => state?.cartReducer?.products) || []
+    const totalPayable =  useSelector(state => state?.cartReducer?.totalPayable) || 0
+    const dispatch = useDispatch();
+
+    // const dispatch = useDispatch();
     const handleFormSubmit = (e) => {
         e.preventDefault()
         const elements = document.querySelectorAll(".form-control")
@@ -17,10 +23,29 @@ const UserDetailsForm = (props) => {
                 },
                 {},
             );
-        console.log(formToJSON(elements));
+        const userDetails = formToJSON(elements)
+        // console.log(formToJSON(elements));
         // dispatch({ type: 'ORDER_MAKE_REQUEST_TO_FIREBASE' ,elements})
         // firebase.add()
+        const orderDetails = {
+            userDetails : userDetails,
+            productDetails : cartProducts,
+            totalPayable : totalPayable,
+            Created: new Date().getTime(),
+            Customer : userDetails.firstName + ' ' + userDetails.lastName,
+            Endtime:  new Date().getTime(),
+            paymentMode : 'cod'
+        }
+        console.log("Order placed s",orderDetails);
+        const firestore = getFirestore();
+        console.log("firestore", firestore);
+        firestore.collection('tdmOrders').add({orderDetails}).then(() => {
+            console.log("done");
+            dispatch({ type: 'CART_EMPTY_PRODUCT' });
+            props.history.push('/orderPlaced')
+        })
     }
+
     return (
         <>
             <div className="hero-wrap hero-bread pb-5" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>

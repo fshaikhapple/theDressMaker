@@ -5,13 +5,19 @@ import { compose } from "redux";
 import { top100data } from "../topPosts";
 
 const Cart = (props) => {
-	const cartProducts =  useSelector(state => state?.cartReducer?.products) || []
+	const cartProducts = useSelector(state => state?.cartReducer?.products) || []
 	const dispatch = useDispatch();
 	// const productsIdArray = cartProducts.map(i=>i.)//! todo real time prices of procuct 
 	let totalCartPrice = 0;
+	const temp  = useSelector(state => state.cartReducer)
 	cartProducts.map(i => {
 		totalCartPrice += i.price;
 	})
+	const addTotalToCart = (item) => {
+		dispatch({ type: 'CART_ADD_ITEM', item })
+	}
+
+	console.log("cartProducts",temp);
 	return (
 		<div>
 			<div className="hero-wrap hero-bread pb-5" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>
@@ -96,7 +102,7 @@ const Cart = (props) => {
 												</td>
 												<hr />
 												<div className='d-flex text-bottom '>
-													<p onClick={() => dispatch({ type: 'CART_REMOVE_PRODUCT' ,item})} className='cursor-pointer w-25 color-red text-center'>Remove</p>
+													<p onClick={() => dispatch({ type: 'CART_REMOVE_PRODUCT', item })} className='cursor-pointer w-25 color-red text-center'>Remove</p>
 													<p className='border-left text-center'>Add to wishlist</p>
 												</div>
 											</tr>
@@ -127,8 +133,10 @@ const Cart = (props) => {
 								<span>$ {totalCartPrice}</span>
 							</p>
 						</div>
-						<p className="text-center">
-							<Link to="/verifyPhoneNumber" className="btn btn-primary py-3 px-4">Proceed to Checkout</Link></p>
+						<p className="text-center" onClick={addTotalToCart}>
+							<Link 
+							to="/verifyPhoneNumber" 
+							className="btn btn-primary py-3 px-4">Proceed to Checkout</Link></p>
 					</div>
 				</div>
 				<p>	<div onClick={() => dispatch({ type: 'CART_EMPTY_PRODUCT' })} to="/verifyPhoneNumber" className="btn btn-primary py-3 px-4">Empty Cart</div></p>

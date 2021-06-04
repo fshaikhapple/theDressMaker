@@ -24,11 +24,13 @@ import {firestoreReducer } from 'redux-firestore'
 import 'firebase/firestore';
 import { productsReducer } from "./productsReducer";
 import { cartReducer } from "./cartReducer";
+import { customerAuthReducer } from "./customerAuth";
 
 const rootReducer = combineReducers({
     authReducer,
     productsReducer,
-        cartReducer,
+    cartReducer,
+    customerDetails: customerAuthReducer,
     firebase: firebaseReducer,
     firestore: firestoreReducer,
 });

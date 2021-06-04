@@ -34,7 +34,8 @@ const UserDetailsForm = (props) => {
             Created: new Date().getTime(),
             Customer : userDetails.firstName + ' ' + userDetails.lastName,
             Endtime:  new Date().getTime(),
-            paymentMode : 'cod'
+            paymentMode : 'cod',
+            orderStatus : 'PENDING'
         }
         console.log("Order placed s",orderDetails);
         const firestore = getFirestore();
@@ -64,20 +65,20 @@ const UserDetailsForm = (props) => {
                         <div className="row align-items-end">
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label for="firstname">First Name</label>
+                                    <label htmlFor="firstname">First Name</label>
                                     <input type="text" className="form-control" id='firstName' placeholder="First Name" />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label for="lastname">Last Name</label>
+                                    <label htmlFor="lastname">Last Name</label>
                                     <input type="text" className="form-control" id='lastName' placeholder="Last Name" />
                                 </div>
                             </div>
                             <div className="w-100"></div>
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label for="country">State / Country</label>
+                                    <label htmlFor="country">State / Country</label>
                                     <div className="select-wrap">
                                         <div className="icon"><span className="ion-ios-arrow-down"></span></div>
                                         <select name="" id="country" className="form-control">
@@ -94,39 +95,39 @@ const UserDetailsForm = (props) => {
                             <div className="w-100"></div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label for="streetaddress">Street Address</label>
+                                    <label htmlFor="streetaddress">Street Address</label>
                                     <input type="text" id='street' className="form-control" placeholder="House number and street name" />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label for="appartment">Appartment</label>
+                                    <label htmlFor="appartment">Appartment</label>
                                     <input type="text" className="form-control" id='appartment' placeholder="Appartment, suite, unit etc: (optional)" />
                                 </div>
                             </div>
                             <div className="w-100"></div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label for="towncity">Town / City</label>
+                                    <label htmlFor="towncity">Town / City</label>
                                     <input type="text" id='city' className="form-control" placeholder="City" />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label for="postcodezip">Postcode / ZIP *</label>
+                                    <label htmlFor="postcodezip">Postcode / ZIP *</label>
                                     <input type="text" id='zip' className="form-control" placeholder="ZIP" />
                                 </div>
                             </div>
                             <div className="w-100"></div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label for="phone">Phone</label>
+                                    <label htmlFor="phone">Phone</label>
                                     <input id='mobile' type="text" className="form-control" placeholder="Mobile" />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label for="emailaddress">Email Address</label>
+                                    <label htmlFor="emailaddress">Email Address</label>
                                     <input type="text" id='email' className="form-control" placeholder="Email" />
                                 </div>
                             </div>

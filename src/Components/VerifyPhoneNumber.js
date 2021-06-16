@@ -10,7 +10,7 @@ const VerifyPhoneNumber = (props) => {
     const [showOtp, setShowOtp] = useState(false)
     const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false)
     const [OTP, setOTP] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("+91");
+    const [phoneNumber, setPhoneNumber] = useState("");
 
     // const onSubmitHandler = (e) => {
     //     props.history.push('/otpVerification')
@@ -31,11 +31,11 @@ const VerifyPhoneNumber = (props) => {
     };
 
     const onSignInSubmit = () => {
-        // if (phoneNumber.length == 12) {
+        if (phoneNumber.length === 10) {
         setIsPhoneNumberValid(true)
 
         setUpRecaptcha();
-        let phoneNumb = ""+phoneNumber+'' ;
+        let phoneNumb = "+91"+phoneNumber+'' ;
         let appVerifier = window.recaptchaVerifier;
         firebase
             .auth()
@@ -49,7 +49,7 @@ const VerifyPhoneNumber = (props) => {
             .catch(function (error) {
                 console.log("error1", error);
             });
-        // }
+        }
     };
 
     const onSubmitOtp = (e) => {
@@ -103,7 +103,7 @@ const VerifyPhoneNumber = (props) => {
                             </div>
                             <div className=" mt-5 midLinks">By continuing, I agree to the <a href="/termsofuse">Terms of Use</a> &amp; <a href="/privacypolicy">Privacy Policy</a></div>
                         </div>
-                        {true && <form>
+                        {true && <form className={!isPhoneNumberValid?'d-none':''}>
                             <div className="col-md-12 cart-total  fadeInUp">
                                 <h3>OTP</h3>
                                 <OTPInput

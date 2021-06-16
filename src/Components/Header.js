@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom';
 //  import { useDispatch } from 'react-redux'
 const Header = (props) => {
   const dispatch = useDispatch();
-	const isLoggedIn =  useSelector(state => state.authReducer.adminLoggedIn)
+  const isLoggedIn = useSelector(state => state.authReducer.adminLoggedIn)
 
   // const data = useSelector(state => state)
   // console.log("data",data);
@@ -31,11 +31,11 @@ const Header = (props) => {
         <div className="collapse navbar-collapse" id="ftco-nav">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <Link to="index.html" className="nav-link">Home</Link></li>
+              <span to="index.html" className="nav-link"><NavLink to="/collection">Home</NavLink></span></li>
             <li className="nav-item dropdown">
 
-              <Link className="nav-link " to="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false"> Shop</Link>
+              <span className="nav-link " to="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><NavLink to="/collection"> Shop</NavLink></span>
               {/* <div className="dropdown-menu" aria-labelledby="dropdown04">
               <a className="dropdown-item" href="shop.html">Shop</a>
               <a className="dropdown-item" href="product-single.html">Single Product</a>
@@ -52,8 +52,8 @@ const Header = (props) => {
               </span>Admin Panel</Link>}
             <li className="nav-item ">
               <Link to="/cart" className=" nav-link">
-                <span className="icon-shopping_cart">{!!products.length&&products.length}</span>
-                {products.length&&<span className='notify'></span>}
+                <span className="icon-shopping_cart">{!!products.length && products.length}</span>
+                {products.length && <span className='notify'></span>}
               </Link>
             </li>
             <li className="nav-item cta cta-colored">
@@ -69,4 +69,4 @@ const Header = (props) => {
   )
 }
 
-export default withRouter(Header)
+export default withRouter(memo(Header))

@@ -32,18 +32,24 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-.overlay-edit{
- background-color:  rgba(241, 184, 196, 0.6);
- z-index: 1;
- position: absolute;
- width: 100%;
- height: 100%;
+
+.overlay-edit {
+  background-color: rgba(241, 184, 196, 0.6);
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
-.w-100{
+
+.w-100 {
   width: 100%;
 }
 
+.pe-none {
+  pointer-events: none;
+}

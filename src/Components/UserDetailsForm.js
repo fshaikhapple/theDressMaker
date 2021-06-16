@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { compose } from "redux";
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import moment from "moment";
 
 const UserDetailsForm = (props) => {
-    const cartProducts =  useSelector(state => state?.cartReducer?.products) || []
-    const totalPayable =  useSelector(state => state?.cartReducer?.totalPayable) || 0
+    const [formValid,setformValid] = useState('')
+    const cartProducts = useSelector(state => state?.cartReducer?.products) || []
+    const totalPayable = useSelector(state => state?.cartReducer?.totalPayable) || 0
+    const userPhoneNumber = useSelector(state => state?.customerDetails?.user?.user?.phoneNumber) || 0
+ 
     const dispatch = useDispatch();
 
     // const dispatch = useDispatch();
@@ -24,27 +27,33 @@ const UserDetailsForm = (props) => {
                 {},
             );
         const userDetails = formToJSON(elements)
-        // console.log(formToJSON(elements));
+        const data = JSON.stringify(userDetails)
+        const formNotValid = Object.values(userDetails).includes('');
+
+        console.log("data", Object.values(userDetails));
+        console.log("formNotValid", Object.values(userDetails).includes(""));
         // dispatch({ type: 'ORDER_MAKE_REQUEST_TO_FIREBASE' ,elements})
         // firebase.add()
         const orderDetails = {
-            userDetails : userDetails,
-            productDetails : cartProducts,
-            totalPayable : totalPayable,
+            userDetails: userDetails,
+            productDetails: cartProducts,
+            totalPayable: totalPayable,
             Created: new Date().getTime(),
-            Customer : userDetails.firstName + ' ' + userDetails.lastName,
-            Endtime:  new Date().getTime(),
-            paymentMode : 'cod',
-            orderStatus : 'PENDING'
+            Customer: userDetails.firstName + ' ' + userDetails.lastName,
+            Endtime: new Date().getTime(),
+            paymentMode: 'cod',
+            orderStatus: 'PENDING'
         }
-        console.log("Order placed s",orderDetails);
-        const firestore = getFirestore();
-        console.log("firestore", firestore);
-        firestore.collection('tdmOrders').add({orderDetails}).then(() => {
-            console.log("done");
-            dispatch({ type: 'CART_EMPTY_PRODUCT' });
-            props.history.push('/orderPlaced')
-        })
+        formNotValid&&setformValid(true)
+        if (!formNotValid) {
+            setformValid(false)
+            const firestore = getFirestore();
+            firestore.collection('tdmOrders').add({ orderDetails }).then(() => {
+                console.log("done");
+                dispatch({ type: 'CART_EMPTY_PRODUCT' });
+                props.history.push('/orderPlaced')
+            })
+        }
     }
 
     return (
@@ -82,12 +91,12 @@ const UserDetailsForm = (props) => {
                                     <div className="select-wrap">
                                         <div className="icon"><span className="ion-ios-arrow-down"></span></div>
                                         <select name="" id="country" className="form-control">
-                                            <option value="UAE">France</option>
-                                            <option value="">Italy</option>
-                                            <option value="">Philippines</option>
-                                            <option value="">South Korea</option>
-                                            <option value="">Hongkong</option>
-                                            <option value="">Japan</option>
+                                            <option value="india">india</option>
+                                            <option value="Italy">Italy</option>
+                                            <option value="Philippines">Philippines</option>
+                                            {/* <option value="">South Korea</option> */}
+                                            <option value="Hongkong">Hongkong</option>
+                                            <option value="Japan">Japan</option>
                                         </select>
                                     </div>
                                 </div>
@@ -122,7 +131,7 @@ const UserDetailsForm = (props) => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label htmlFor="phone">Phone</label>
-                                    <input id='mobile' type="text" className="form-control" placeholder="Mobile" />
+                                    <input id='mobile' value={userPhoneNumber} type="text" className="form-control" placeholder="Mobile" />
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -141,8 +150,8 @@ const UserDetailsForm = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <button className="btn btn-primary py-3 px-4 submit">Place order</button>
-
+                        <button className=" btn btn-primary py-3 px-4 submit">Place order</button>
+                        {formValid &&<p>{'please enter all the details correctly'}</p>}
                     </form>
                     <div className="row mt-5 pt-3 d-flex mb-5">
                         <div className="col-md-6">

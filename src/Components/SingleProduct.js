@@ -21,7 +21,7 @@ export const SingleProduct = (props) => {
     const [selectedSize, setSelectedSize] = useState('Medium');
     const dispatch = useDispatch();
     const id = props?.match?.params?.id
-    const posts = useSelector(state => state?.firestore?.data?.tdmPosts?.BP9iL5ZG56sVpkiXcg0y?.mockDataPosts) || []
+    const posts = useSelector(state => state?.firestore?.data?.tdmPosts?.A0OPoskeSYMah4lUbdbI?.allPosts) || []
 
     const selectedValue = posts.filter((item) => item.id === id)
 
@@ -40,7 +40,7 @@ export const SingleProduct = (props) => {
             updateQuantity: updateQuantity,
             media_url: selectedValue[0].media_url,
             permalink: selectedValue[0].permalink,
-            price: selectedValue[0]?.price || 120+(Math.ceil(Math.random() * 100)),
+            price: selectedValue[0]?.price || 120 + (Math.ceil(Math.random() * 100)),
         }
         dispatch({ type: 'CART_ADD_PRODUCT', product })
         props.history.push('/cart');
@@ -57,7 +57,7 @@ export const SingleProduct = (props) => {
                         </div>
                         <div className="col-lg-6 product-details pl-md-5 ftco-animate fadeInUp ftco-animated">
                             <h3>Young Woman Wearing Dress</h3>
-                            <p className="price"><span>$120.00</span></p>
+                            <p className="price"><span>{selectedValue[0]?.price + '/-'}</span></p>
                             {selectedValue[0]?.caption ? <p>{selectedValue[0].caption}</p> : <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>}
                             <div className="row mt-4">
                                 <div className="col-md-6">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 // import {  } from "react-redux";
 // import  * as us  from 'react-redux'
@@ -9,34 +9,36 @@ import {
     NavLink,
     Link
 } from "react-router-dom";
-import { top100data } from "../topPosts";
 import { useFirebaseConnect } from 'react-redux-firebase'
 import { useSelector } from "react-redux";
-// import { useSelector } from "react-redux";
-// const images = top100data.map(i => i.media_url)
-// function uniq(a) {
-//     return Array.from(new Set(a));
-// }
 
 
-let result = [];
-const map = new Map();
-for (const item of top100data) {
-    if (!map.has(item.id)) {
-        map.set(item.id, true);    // set any value to Map
-        result.push({
-            id: item.id,
-            media_url: item.media_url
-        });
-    }
-}
+
 // console.log(result)
-result = result.splice(0, 5);
 
-export const Collection = (props) => {
+
+const Collection = (props) => {
     // console.log("useSelector",useSelector());
-    // const statt = useSelector(state => state)
-    const posts = useSelector(state => state?.firestore?.data?.tdmPosts?.BP9iL5ZG56sVpkiXcg0y?.mockDataPosts) || []
+    const [currentLoadedPosts, setcurrentLoadedPosts] = useState(10)
+    const [slicedresult, setslicedresult] = useState([])
+    // const statt = useSelector(state => state)A0OPoskeSYMah4lUbdbI
+
+
+    let posts = useSelector(state => state?.firestore?.data?.tdmPosts?.A0OPoskeSYMah4lUbdbI?.allPosts) || []
+    let result = [...posts]
+
+    useEffect(() => {
+        setslicedresult(result.slice(0, 10))
+        console.log("res", result);
+    }, [])
+
+    const loadMore = () => {
+        if (currentLoadedPosts <= posts.length) {
+            setslicedresult(result.slice(0, 10 + currentLoadedPosts))
+            console.log("slicedresult", slicedresult);
+            setcurrentLoadedPosts(currentLoadedPosts + 10)
+        }
+    }
     return (
         <div>
             <div className="hero-wrap hero-bread pb-5" style={{ backgroundImage: `url("./images/bg_6.jpeg")` }}>
@@ -131,51 +133,53 @@ export const Collection = (props) => {
 
             <div className="container-fluid">
                 <div className="row">
-                    {posts && posts.map((item, i) => {
-                        return <div className="col-sm col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
-                            <div className="product">
-                                <a href="#" className="img-prod">
+                    {Array.isArray(slicedresult) && slicedresult.map((item, i) => {
+                        return item.storeVisibility ? <div key={i} className="col-sm col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated ">
+                            <div className="product ">
+                                <p className="img-prod">
                                     <span className="status">New Arrival</span>
-                                </a>
-                                <div className="text py-3 px-3">
+                                </p>
+                                <div className="text py-3 px-3 ">
                                     <Link to={`/Singleproduct/${item.id}`}>
-                                        <a className="img-prod">
+                                        <p className="img-prod">
                                             <img className="img-fluid" src={item.media_url} alt="Colorlib Template" />
-                                        </a>
+                                        </p>
                                     </Link>
-                                    <h3><a href="#">Young Woman Wearing Dress</a></h3>
+                                    <h3><p>{item.caption}</p></h3>
                                     <div className="d-flex">
                                         <div className="pricing">
-                                            <p className="price"><span>$120.00</span></p>
+                                            <p className="price"><span>{item?.price}</span></p>
                                         </div>
                                         <div className="rating">
                                             <p className="text-right">
                                                 <span className="ion-ios-star"></span>
                                                 <span className="ion-ios-star"></span>
                                                 <span className="ion-ios-star"></span>
+                                                <span className="ion-ios-star"></span>
                                                 <span className="ion-ios-star-half"></span>
-                                                <span className="ion-ios-star-outline"></span>
+                                                {/* <span className="ion-ios-star-outline"></span> */}
                                             </p>
                                         </div>
                                     </div>
                                     <hr />
-                                    <p className="bottom-area d-flex justify-content-center">
-                                        <a href="#" className="add-to-cart">
+                                    <div className="bottom-area d-flex justify-content-center">
+                                        <p className="add-to-cart">
                                             <span> WishList <i className="ion-ios-heart-empty ml-1"></i></span>
-                                        </a>
+                                        </p>
                                         {/* <a href="#" className="ml-auto">
                                             <span><i className="ion-ios-heart-empty"></i></span>
                                         </a> */}
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> : <></>
                     })}
                 </div>
                 <div className="row mt-5">
                     <div className="col text-center">
                         <div className="block-27">
-                            <ul>
+                            <div onClick={loadMore} className="btn btn-primary py-3 px-5">load more</div>
+                            {/* <ul>
                                 <li><a href="#">&lt;</a></li>
                                 <li className="active"><span>1</span></li>
                                 <li><a href="#">2</a></li>
@@ -183,7 +187,7 @@ export const Collection = (props) => {
                                 <li><a href="#">4</a></li>
                                 <li><a href="#">5</a></li>
                                 <li><a href="#">&gt;</a></li>
-                            </ul>
+                            </ul> */}
                         </div>
                     </div>
                 </div>
@@ -192,4 +196,5 @@ export const Collection = (props) => {
     )
 }
 
+export default memo(Collection)
 

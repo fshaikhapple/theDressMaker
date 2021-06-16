@@ -81,7 +81,7 @@ import "firebase/database";
 // import { LetsStart } from './Components/LetsStart';
 import { Footer } from './Components/Footer';
 import { Home } from './Components/Home';
-import { Collection } from './Components/Collection';
+import Collection from './Components/Collection';
 import Header from './Components/Header';
 import { SingleProduct } from './Components/SingleProduct';
 import Login from './Components/adminPages/Login';
@@ -98,6 +98,7 @@ import PrivateRoute from './PrivateRoute';
 import AboutUs from './Components/AboutUs';
 import { Route, Router, Switch,BrowserRouter } from 'react-router-dom';
 import OrderPlaced from './Components/OrderPlaced';
+import Developer from './Components/Developer';
 
 class App extends Component {
   render() {
@@ -119,6 +120,7 @@ class App extends Component {
           <Route exact path='/otpVerification' component={OtpVerification} />
           <Route exact path='/userDetailsForm' component={UserDetailsForm} />
           <Route exact path='/orderPlaced' component={OrderPlaced} />
+          <Route exact path='/developer' component={Developer} />
         </Switch>
         <Footer />
       </BrowserRouter>
